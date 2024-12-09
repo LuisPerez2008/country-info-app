@@ -10,6 +10,7 @@ function App() {
   const [nameRegion, setNameRegion] = useState("")
   const [nameCountry, setNameCountry] = useState("")
 
+  const isDark = document.documentElement.classList.contains('dark');
 
   const handleChange = (e) => {
     setNameRegion(e.target.value)
@@ -21,8 +22,8 @@ function App() {
   }
 
   return (
-    <div className="">
-      <Header />
+    <div className="bg-veryLightGray dark:bg-veryDarkBlueBg dark:text-white h-full transition-all duration-200">
+      <Header isDark={isDark} />
       <BrowserRouter>
         <Routes >
           <Route path="/" element=

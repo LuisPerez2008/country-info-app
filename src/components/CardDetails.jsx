@@ -19,6 +19,7 @@ export const CardDetails = () => {
 
 
 
+
     useEffect(() => {
         if (country.borders.length === 0) return;
 
@@ -37,9 +38,9 @@ export const CardDetails = () => {
     }, [])
 
     return (
-        <section className="max-w-[90%] mx-auto tablet:max-w-[90%] mt-4  ">
-            <Link to="/" className="flex my-8 cursor-pointer items-center  bg-veryLightGray w-[100px] space-x-4 px-4 py-1 text-veryDarkBlueText shadow-[1px_0px_29px_17px_rgba(0,_0,_0,_0.1)]">
-                <FaArrowLeft className="w-4 fill-black" />
+        <section className="max-w-[90%] mx-auto tablet:max-w-[90%] mt-4 h-screen  ">
+            <Link to="/" className="flex my-8 cursor-pointer items-center dark:text-white  bg-veryLightGray dark:bg-darkBlue w-[100px] space-x-4 px-4 py-1 text-veryDarkBlueText shadow-[1px_0px_29px_17px_rgba(0,_0,_0,_0.1)]">
+                <FaArrowLeft className="w-4 fill-black dark:fill-white" />
                 <span className="text-sm">Back</span>
             </Link>
             <div className=" w-full grid tablet:grid-cols-2 tablet:grid-rows-[auto_auto] tablet:space-x-6"  >
@@ -49,7 +50,7 @@ export const CardDetails = () => {
                 <div className=" flex-col flex py-6 space-y-6 tablet:flex-row tablet:space-x-4  laptop:space-x-32">
                     <div>
                         <h2 className="font-bold text-md mb-2 text-xl">{country.name}</h2>
-                        <a href={country.gooleMaps} target="_blank" className="cursor-pointer">Ir a Ubicacion </a>
+                        <a href={country.googleMaps} target="_blank" className="font-bold cursor-pointer after:content-['🌍'] after:ml-1 after:text-xl">Ubicacion:</a>
                         <p className="font-bold">Poblation: <span className="text-sm font-normal"> {localString}</span></p>
                         <p className="font-bold">Region:<span className="text-sm font-normal"> {country.region}</span> </p>
                         <p className="font-bold">Sub Region:<span className="text-sm font-normal"> {country.subregion}</span> </p>
@@ -85,7 +86,7 @@ export const CardDetails = () => {
                     <div className="flex flex-wrap gap-2 ">
                         {
                             border.length === 0 ? "no tiene" : border.map((border, index) => (
-                                <span key={index} className="text-sm rounded-sm shadow-[10px_15px_35px_17px_rgba(0,_0,_0,_0.1)] bg-veryLightGray px-4 py-1 h-[30px] ">
+                                <span key={index} className="text-sm rounded-sm shadow-[1px_15px_35px_17px_rgba(0,_0,_0,_0.1)] bg-veryLightGray dark:bg-darkBlue px-4 py-1 h-[30px] ">
                                     {border}
                                 </span>
                             ))
