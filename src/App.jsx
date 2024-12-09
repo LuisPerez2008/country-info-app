@@ -28,7 +28,7 @@ function App() {
         <Routes >
           <Route path="/" element=
             {
-              <>
+              < >
                 <div className='flex flex-col mx-auto max-w-[90%] tablet:flex-row tablet:justify-between tablet:items-center mt-4 '>
                   <Search handleChangeInput={handleChangeInput} />
                   <Filter handleChange={handleChange} />

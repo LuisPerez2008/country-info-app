@@ -1,8 +1,17 @@
-# React + Vite
+# Country Information App - React & Tailwind CSS
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is a React-based web application that fetches country data from the [Rest Countries API](https://restcountries.com). The application displays a list of countries, along with their details such as name, capital, population, region, and borders. Additionally, it allows the user to toggle between dark and light themes using Tailwind CSS.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+-   Displays country information such as name, capital, population, region, and borders.
+-   Dark and light mode toggle for a customizable user experience.
+-   Responsive design using Tailwind CSS.
+-   Data fetched from the [Rest Countries API](https://restcountries.com).
+-   Dynamic routing to show detailed country information on a separate page.
+
+## Technologies Used
+
+-   **React:** To build the user interface, manage states, and handle dynamic routing.
+-   **Tailwind CSS:** For styling, creating a responsive design, and implementing the dark mode functionality.
+-   **Rest Countries API:** To fetch country data including details such as name, capital, region, borders, etc.
