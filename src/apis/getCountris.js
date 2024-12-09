@@ -12,8 +12,10 @@ export const getCountris = async () => {
         const population = country.population;
         const subregion = country.subregion ? country.subregion : "no tiene";
         const img = country.flags.png;
-        const lenguages = country.lenguages;
+        const languages = country.languages ? country.languages : {};
         const tld = country.tld;
+        const currencies = country.currencies ? country.currencies : {};
+        const borders = country.borders ? country.borders : [];
         return {
             id,
             name,
@@ -23,6 +25,10 @@ export const getCountris = async () => {
             googleMaps,
             population,
             img,
+            languages,
+            tld,
+            currencies,
+            borders,
         };
     });
     return country;
