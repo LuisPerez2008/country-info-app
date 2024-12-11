@@ -37,6 +37,7 @@ export const Main = ({ nameRegion, nameCountry }) => {
         })
     }, [nameCountry])
 
+
     return (
         <section className="grid  max-w-[90%]  mx-auto mt-4 gap-4 tablet:gap-7 tablet:grid-cols-2 laptop:grid-cols-4">
             {

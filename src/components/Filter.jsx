@@ -21,6 +21,8 @@ export const Filter = ({ handleChange }) => {
                 <option value="oceania">Oceania</option>
 
 
+
+
             </select>
 
 

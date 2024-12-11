@@ -1,27 +1,40 @@
-import { useLocation } from "react-router";
+import { useLocation, useParams } from "react-router";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router";
 import { useEffect, useState } from "react";
 import { getCountryByCod } from "../apis/getCountryByCod";
+import { getCountryByName } from "../apis/getCountryByName";
 
 export const CardDetails = () => {
 
-    const location = useLocation();
-    const { country } = location.state || {};
-    const capitals = country.capital;
 
-    const currencyNames = Object.values(country.currencies);
-    const lenguajes = Object.values(country.languages);
-    const localString = country.population.toLocaleString('en')
+    const { name: countryName } = useParams();
 
+    const [country, setCountry] = useState(null)
     const [border, setBorder] = useState([])
     const [loading, setLoading] = useState(true)
 
 
 
+
+    const capitals = country?.capital;
+    const currencyNames = country?.currencies ? Object.values(country.currencies) : [];
+    const lenguajes = country?.languages ? Object.values(country.languages) : [];
+    const localString = country?.population.toLocaleString('en')
+
+    useEffect(() => {
+        if (countryName === "") return;
+        getCountryByName(countryName).then(data => {
+            setCountry(data[0])
+            setLoading(false)
+        })
+    }, [countryName])
+
+
+
     useEffect(() => {
 
-        if (country.borders.length === 0) return;
+        if (!country?.borders?.length) return;
 
         const fetchBorders = async () => {
             const bordersNames = await Promise.all(
@@ -36,14 +49,16 @@ export const CardDetails = () => {
 
         fetchBorders();
 
-    }, [])
+    }, [country])
 
-    console.log(border)
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <section className="max-w-[90%] mx-auto tablet:max-w-[90%] mt-4 h-[calc(100vh-100px)]  ">
-            <Link to="/" className="flex my-8 cursor-pointer items-center dark:text-white  bg-veryLightGray dark:bg-darkBlue w-[100px] space-x-4 px-4 py-1 text-veryDarkBlueText shadow-[1px_0px_29px_17px_rgba(0,_0,_0,_0.1)]">
-                <FaArrowLeft className="w-4 fill-black dark:fill-white" />
+            <Link to="/" className="flex my-8 cursor-pointer items-center dark:text-white  bg-veryLightGray dark:bg-darkBlue w-[100px] space-x-4 px-4 py-1 text-veryDarkBlueText shadow-[1px_0px_29px_17px_rgba(0,_0,_0,_0.1)] dark:hover:bg-veryLightGray dark:hover:text-veryDarkBlueText hover:bg-slate-600 hover:text-white group">
+                <FaArrowLeft className="w-4 fill-black dark:fill-white group-hover:fill-white dark:group-hover:fill-black" />
                 <span className="text-sm">Back</span>
             </Link>
             <div className=" w-full grid tablet:grid-cols-2 tablet:grid-rows-[auto_auto] tablet:space-x-6"  >
@@ -89,7 +104,7 @@ export const CardDetails = () => {
                     <article className="flex flex-wrap gap-2 ">
                         {
                             border.length === 0 ? "no tiene" : border.map((border, index) => (
-                                <Link to={`/country/${border}`} state={country} key={index} className="text-sm rounded-sm shadow-[1px_15px_35px_17px_rgba(0,_0,_0,_0.1)] bg-veryLightGray dark:bg-darkBlue px-4 py-1 h-[30px] ">
+                                <Link to={`/country/${border}`} key={index} className="text-sm rounded-sm shadow-[1px_15px_35px_17px_rgba(0,_0,_0,_0.1)] bg-veryLightGray dark:bg-darkBlue px-4 py-1 h-[30px] dark:hover:bg-veryLightGray dark:hover:text-veryDarkBlueText hover:bg-slate-600 hover:text-white">
                                     {border}
                                 </Link>
                             ))

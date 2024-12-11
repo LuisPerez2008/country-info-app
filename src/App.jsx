@@ -40,7 +40,7 @@ function App() {
           />
 
           <Route path="/country/:name" element={<CardDetails />} />
-
+          <Route path="/*" element={<Main />} />
         </Routes>
 
       </BrowserRouter>

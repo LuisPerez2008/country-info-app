@@ -8,7 +8,7 @@ export const CardCountry = ({ country }) => {
     return (
         <Link to={`/country/${country.name}`}
             className="bg-veryLightGray dark:bg-veryDarkBlueBg dark:text-white w-full max-w-[80%] mx-auto tablet:max-w-[90%] rounded-md shadow-[1px_0px_29px_17px_rgba(0,_0,_0,_0.1)] "
-            state={{ country }}
+
         >
             <figure className="w-full h-[200px] aspect-video" >
                 <img src={country.img} alt="" className="rounded-md w-full h-full" />
