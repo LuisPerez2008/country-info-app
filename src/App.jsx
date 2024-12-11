@@ -39,7 +39,7 @@ function App() {
             }
           />
 
-          <Route path="/country/:id" element={<CardDetails />} />
+          <Route path="/country/:name" element={<CardDetails />} />
 
         </Routes>
 

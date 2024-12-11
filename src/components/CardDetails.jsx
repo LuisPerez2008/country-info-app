@@ -1,7 +1,6 @@
 import { useLocation } from "react-router";
 import { FaArrowLeft } from "react-icons/fa";
 import { Link } from "react-router";
-import { Container } from "postcss";
 import { useEffect, useState } from "react";
 import { getCountryByCod } from "../apis/getCountryByCod";
 
@@ -16,11 +15,12 @@ export const CardDetails = () => {
     const localString = country.population.toLocaleString('en')
 
     const [border, setBorder] = useState([])
-
+    const [loading, setLoading] = useState(true)
 
 
 
     useEffect(() => {
+
         if (country.borders.length === 0) return;
 
         const fetchBorders = async () => {
@@ -31,14 +31,17 @@ export const CardDetails = () => {
                 })
             )
             setBorder(bordersNames)
+            setLoading(false)
         }
 
         fetchBorders();
 
     }, [])
 
+    console.log(border)
+
     return (
-        <section className="max-w-[90%] mx-auto tablet:max-w-[90%] mt-4 h-screen  ">
+        <section className="max-w-[90%] mx-auto tablet:max-w-[90%] mt-4 h-[calc(100vh-100px)]  ">
             <Link to="/" className="flex my-8 cursor-pointer items-center dark:text-white  bg-veryLightGray dark:bg-darkBlue w-[100px] space-x-4 px-4 py-1 text-veryDarkBlueText shadow-[1px_0px_29px_17px_rgba(0,_0,_0,_0.1)]">
                 <FaArrowLeft className="w-4 fill-black dark:fill-white" />
                 <span className="text-sm">Back</span>
@@ -83,15 +86,15 @@ export const CardDetails = () => {
                 </div>
                 <div className="flex flex-col tablet:flex-row tablet:space-x-4">
                     <h3 className="font-bold">Border Countries: </h3>
-                    <div className="flex flex-wrap gap-2 ">
+                    <article className="flex flex-wrap gap-2 ">
                         {
                             border.length === 0 ? "no tiene" : border.map((border, index) => (
-                                <span key={index} className="text-sm rounded-sm shadow-[1px_15px_35px_17px_rgba(0,_0,_0,_0.1)] bg-veryLightGray dark:bg-darkBlue px-4 py-1 h-[30px] ">
+                                <Link to={`/country/${border}`} state={country} key={index} className="text-sm rounded-sm shadow-[1px_15px_35px_17px_rgba(0,_0,_0,_0.1)] bg-veryLightGray dark:bg-darkBlue px-4 py-1 h-[30px] ">
                                     {border}
-                                </span>
+                                </Link>
                             ))
                         }
-                    </div>
+                    </article>
                 </div>
             </div>
 
